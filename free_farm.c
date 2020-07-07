@@ -48,6 +48,8 @@ void free_farm(t_farm *farm)
 {
 	
 	free_ants(farm);
+	if (farm->f_farm)
+		 free(farm->f_farm);
 	if(farm->f_rooms != NULL)
 	 	free(farm->f_rooms);
 	if(farm->f_links != NULL)

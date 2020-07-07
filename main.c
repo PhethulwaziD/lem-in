@@ -51,14 +51,11 @@ static int create_paths(t_farm *farm)
 		if (farm->rooms[i].v > 0)
 		{
 			if (farm->rooms[i].n_links > 0)
-			{
 				if (rooms_not_marked(i, farm) == 0)
 				{
 					mark_room_links(i, farm);
-					
 					i = 0;
 				}
-			}
 		}
 		i++;
 	}
@@ -201,6 +198,8 @@ static void next(t_farm *farm)
 			if (farm->n_paths > 0)
 			{
 				assign_paths(farm);
+				ft_putstr(farm->f_farm);
+				ft_putendl("");
 				execute_paths(farm);
 			}
 			else

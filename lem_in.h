@@ -48,6 +48,7 @@ typedef	struct s_farm
 	char *f_links;
 	int start;
 	int end;
+	char *f_farm;
 	int n_paths;
 	char **paths;
 	char *f_paths;

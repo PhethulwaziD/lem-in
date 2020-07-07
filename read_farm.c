@@ -17,6 +17,21 @@ int empty_line(char *line)
 	return (0);
 }
 
+static void save_farm(t_farm *farm, char *line)
+{
+	char *tmp;
+
+	tmp = NULL;
+	if (farm->f_farm == NULL)
+		farm->f_farm = ft_strnew(0);
+	tmp = farm->f_farm;
+	farm->f_farm = ft_strjoin(farm->f_farm, line);
+	free(tmp);
+	tmp = farm->f_farm;
+	farm->f_farm = ft_strjoin(farm->f_farm, "\n");
+	free(tmp);
+}
+
 int	read_farm(t_farm *farm)
 {
 	char	*line;
@@ -43,11 +58,10 @@ int	read_farm(t_farm *farm)
 		if (i > 0 && is_link(line) == 1)
 			if (save_links(line, &links, farm) == 0)
 				return (0);
-		ft_putendl(line);
+		save_farm(farm, line);
 		free(line);
 		i++;
 	}
-	ft_putendl("");
 	farm->f_rooms = rooms;
 	farm->f_links = links;
 	return (1);

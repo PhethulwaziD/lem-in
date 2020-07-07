@@ -6,11 +6,12 @@ int build_rooms(t_farm *farm)
 	int 	i;
 	int 	j;
 	char 	*line;
+	t_room *array;
 
 	i = 0;
 	j = 0;
 	rooms = ft_strsplit(farm->f_rooms, '\n');
-	t_room *array = malloc((farm->n_rooms) * sizeof(t_room));
+	array = malloc((farm->n_rooms) * sizeof(t_room));
 	if (rooms)	
 	{	
 		farm->rooms = array;

@@ -17,12 +17,14 @@ char				**ft_strsplit(char const *s, char ch)
 	int				j;
 	char			*str;
 	char			**array;
+	int				size;
 
 	j = 0;
 	if (!s || !(str = ft_trimch(s, ch)))
 		return (NULL);
+	size = ft_wordcount((char *)str, ch) + 1;
 	if (!(array = (char**)malloc(sizeof(char*)
-					* ft_wordcount((char *)str, ch) + 1)))
+					* (size))))
 	{
 		free(str);
 		return (NULL);

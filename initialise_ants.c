@@ -3,9 +3,10 @@
 void initialise_ants(t_farm *farm)
 {
 	int 	i;
+	t_ant *array;
 
 	i = 0;
-	t_ant *array = malloc(farm->n_ants * sizeof(t_ant));
+	array = malloc(farm->n_ants * sizeof(t_ant));
 	while (i < farm->n_ants)
 	{
 		array[i].id = i + 1;

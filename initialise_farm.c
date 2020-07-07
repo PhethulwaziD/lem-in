@@ -2,6 +2,7 @@
 
 void initialise_farm(t_farm *farm)
 {
+	farm->f_farm = NULL;
 	farm->n_ants = 0;
 	farm->n_rooms = 0;
 	farm->n_links = 0;
