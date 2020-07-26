@@ -46,12 +46,14 @@ static int n_spaces(char *line)
 static int is_room(char *line)
 {
 
-	if (start_command(line) == 1 || end_command(line) == 1 || ignore_command(line) == 1)
+	if (start_command(line) == 1 || end_command(line) == 1)
 	{
 		if (n_spaces(line) == 0)
 			return (1);
 	}
 	else if (n_spaces(line) == 2)
+		return (1);
+	else if (ignore_command(line) == 1)
 		return (1);
 	return (0);
 }
@@ -72,44 +74,68 @@ static int invalid_line(char *line, t_farm *farm)
 	}
 	return (0);
 }
+// static int rooms_acc(char **arr)
+// {
+// 	int i;
+// 	int j;
 
-static int according(t_farm *farm)
-{
-	char **arr;
-	int i;
+// 	i = 0;
+// 	while (arr[i])
+// 	{
+// 		if ((n_spaces(arr[i]) == 2 ||  end_command(arr[i]) == 1 || start_command(arr[i])== 1))
+// 		{
+// 			if ((i - 1) > 0)
+// 			{
+// 				j = i;
+// 				while (j > 0)
+// 				{
+// 					if (is_link(arr[j]))
+// 						return (0);
+// 					j--;
+// 				}
+// 			}
+// 		}
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
-	i = 0;
-	arr = ft_strsplit(farm->f_farm, '\n');
-	while (arr[i])
-	{
-		if ((n_spaces(arr[i]) == 2 ||  end_command(arr[i]) == 1 || start_command(arr[i])== 1))
-		{
-			if ((i - 1) > 0)
-			{
-				if (is_link(arr[i - 1]))
-				{
-					free_arr(arr); 
-					return (0);
-				}
-			}
-		}
-		else if (is_link(arr[i]))
-		{
-			if (arr[i + 1])
-			{
-				if (arr[i + 1] && (n_spaces(arr[i + 1]) == 2 ||  end_command(arr[i + 1]) == 1
-				|| start_command(arr[i + 1])== 1))
-				{
-					free_arr(arr);
-					return (0);
-				}
-			}
-		}
-		i++;
-	}
-	free_arr(arr);
-	return (1);
-}
+// static int links_acc(char **arr)
+// {
+// 	int i;
+// 	int j;
+
+// 	i = 0;
+// 	while (arr[i])
+// 	{
+// 		if (is_link(arr[i]))
+// 		{
+// 			j = i;
+// 			while(arr[j])
+// 			{
+// 				if (arr[j] && (n_spaces(arr[j]) == 2 ||  end_command(arr[j]) == 1 || start_command(arr[j])== 1))
+// 					return (0);
+// 				j++;
+// 			}
+// 		}
+// 		i++;
+// 	}
+// 	return (1);
+// }
+
+// static int according(t_farm *farm)
+// {
+// 	char **arr;
+
+// 	arr = ft_strsplit(farm->f_farm, '\n');
+// 	if (rooms_acc(arr) == 0 || links_acc(arr) == 0)
+// 	{
+// 		free_arr(arr);
+// 		return (0);
+// 	}
+// 	free_arr(arr);
+// 	return (1);
+// }
 
 static int sequence(t_farm *farm)
 {
@@ -128,6 +154,7 @@ int	read_farm(t_farm *farm)
 	
 	while (get_next_line(0, &line) > 0)
 	{
+		ft_putendl(line);
 		if (empty_line(line) == 0)
 		{
 			free(line);
@@ -153,7 +180,7 @@ int	read_farm(t_farm *farm)
 		if (line != NULL)
 			free(line);
 	}
-	if (according(farm) == 0)
-		return (0);
+	// if (according(farm) == 0)
+	// 	return (0);
 	return (1);
 }
