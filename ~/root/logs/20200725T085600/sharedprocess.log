@@ -1,0 +1,3 @@
+[2020-07-25 08:56:06.389] [sharedprocess] [info] main {"machineId":"4400aab57bc55a58da7f0ad458469ee4ef2f84481cc09b8d0702d09736b027f7","windowId":2}
+[2020-07-25 08:56:06.963] [sharedprocess] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/home/phethulwazi/Desktop/work/lem-in/~/root/User/snippets'
+[2020-07-25 08:56:46.612] [sharedprocess] [info] Starting to clean up unused language packs.

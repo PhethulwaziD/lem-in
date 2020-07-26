@@ -1,0 +1,4 @@
+[2020-07-25 08:56:27.581] [renderer1] [warning] UNRESPONSIVE extension host, 'ritwickdey.LiveServer' took 66% of 6540.809ms, saved PROFILE here: '/tmp/exthost-c6ce3c.cpuprofile' [{"id":"gc","total":34738,"percentage":1},{"id":"ritwickdey.LiveServer","total":4344377,"percentage":66},{"id":"RobbOwen.synthwave-vscode","total":133250,"percentage":2},{"id":"self","total":76416,"percentage":1},{"id":"Zignd.html-css-class-completion","total":1947533,"percentage":30}]
+[2020-07-25 08:57:32.769] [renderer1] [error] net::ERR_TIMED_OUT: Error: net::ERR_TIMED_OUT
+    at SimpleURLLoaderWrapper.<anonymous> (electron/js2c/browser_init.js:2657:21)
+    at SimpleURLLoaderWrapper.emit (events.js:203:13)

@@ -1,23 +1,22 @@
 #include "lem_in.h"
 
-int		save_rooms(char *line, char **rooms, t_farm *farm)
+int		save_rooms(char *line, t_farm *farm)
 {
 	char	*tmp;
 
 	if (validate_room(line) ==  1)
 	{
-		if (*rooms == NULL)
-			*rooms = ft_strnew(0);
-		tmp = *rooms;
-		*rooms = ft_strjoin(*rooms, line);
+		if (farm->f_rooms == NULL)
+			farm->f_rooms = ft_strnew(0);
+		tmp = farm->f_rooms;
+		farm->f_rooms = ft_strjoin(farm->f_rooms, line);
 		free(tmp);
-		tmp = *rooms;
-		*rooms = ft_strjoin(*rooms, "\n");
+		tmp = farm->f_rooms;
+		farm->f_rooms = ft_strjoin(farm->f_rooms, "\n");
 		farm->n_rooms++;
 		free(tmp);
 		return (1);
 	}
-	free(*rooms);
 	free(line);
 	return (0);
 }

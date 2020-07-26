@@ -14,7 +14,6 @@
 
 int		ft_isint(char *str)
 {
-
 	while (*str)
 	{
 		if (!((ft_isdigit(*str) == 1) || (*str == '-' || *str == '+')))

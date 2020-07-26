@@ -2,7 +2,7 @@
 
 static int link_not_marked(int l_room, t_farm *farm)
 {
-	if (l_room = farm->rooms[l_room].v == 0)
+	if ((l_room = farm->rooms[l_room].v) == 0)
 		return (1);
 	return (0);
 }
@@ -51,11 +51,13 @@ static int create_paths(t_farm *farm)
 		if (farm->rooms[i].v > 0)
 		{
 			if (farm->rooms[i].n_links > 0)
+			{
 				if (rooms_not_marked(i, farm) == 0)
 				{
 					mark_room_links(i, farm);
 					i = 0;
 				}
+			}
 		}
 		i++;
 	}
@@ -132,8 +134,12 @@ static void get_paths(t_farm *farm)
 static void assign_paths(t_farm *farm)
 {
 	int i;
+	char *tmp;
 
 	i = 0;
+	tmp = farm->f_paths;
+	farm->f_paths = ft_strtrim(farm->f_paths);
+	free(tmp);
 	while (i < farm->n_ants)
 	{
 		farm->ants[i].path = farm->f_paths;
@@ -164,8 +170,9 @@ static void move_ant(t_farm *farm, int ant)
 	{
 		curr = ft_atoi(path[i]);
 		i++;
-		next = ft_atoi(path[i]);
-		if (farm->ants[ant].pos_id == curr)
+		if (path[i] && ft_isint(path[i]))
+			next = ft_atoi(path[i]);
+		if (farm->ants[ant].pos_id != next)
 		{
 			farm->rooms[next].n_ants++;
 			farm->rooms[curr].n_ants--;
@@ -222,9 +229,11 @@ int			main(void)
 		if (validate_farm(&farm) == 1)
 		{
 			if (build_rooms(&farm) == 1)
-				next(&farm);
+			{
+			 	next(&farm);
+			}
 			else
-				exit_farm(&farm);
+			 	exit_farm(&farm);
 		}
 		else
 				exit_farm(&farm);
